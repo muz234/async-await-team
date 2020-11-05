@@ -3,7 +3,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            employees: []
+            weather: []
         }
     }
     // fetchData(){
@@ -20,7 +20,7 @@ class Home extends React.Component {
     // }
     async fetchData() {
         try {
-            let response = await fetch('http://dummy.restapiexample.com/api/v1/employees')
+            let response = await fetch('api.openweathermap.org/data/2.5/weather?q=london&appid=7220e1f7475621ddbd9b30ca23f49feb')
             let data = await response.json()
             return data
         } catch (error) {
@@ -31,11 +31,11 @@ class Home extends React.Component {
         this.fetchData()
         return (
             <div>
-                <h1>My Employees</h1>
-                {this.state.employees.map((employee) => {
+                <h1>The weather of the city</h1>
+                {this.state.weather.map((weather) => {
                     return (
                         <div>
-                            {employee.employee_name}
+                            {weather.temp}
                         </div>
                     )
                 })}
